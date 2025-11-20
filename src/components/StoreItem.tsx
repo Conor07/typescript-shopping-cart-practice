@@ -21,7 +21,7 @@ const StoreItem: React.FC<StoreItemProps> = ({ id, name, price, imgUrl }) => {
   const quantity = getItemQuantity(id);
 
   return (
-    <Card className="h-100">
+    <Card className="h-100" data-testid={`store-item-${id}`}>
       <Card.Img
         variant="top"
         src={imgUrl}
@@ -38,7 +38,11 @@ const StoreItem: React.FC<StoreItemProps> = ({ id, name, price, imgUrl }) => {
 
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
+            <Button
+              className="w-100"
+              onClick={() => increaseCartQuantity(id)}
+              data-testid={`add-to-cart-${id}`}
+            >
               Add To Cart
             </Button>
           ) : (
@@ -50,12 +54,25 @@ const StoreItem: React.FC<StoreItemProps> = ({ id, name, price, imgUrl }) => {
                 className="d-flex align-items-center justify-content-center"
                 style={{ gap: "0.5rem" }}
               >
-                <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                <Button
+                  onClick={() => decreaseCartQuantity(id)}
+                  data-testid={`decrease-cart-quantity-${id}`}
+                >
+                  -
+                </Button>
                 <div>
-                  <span className="fs-3">{quantity}</span> in cart
+                  <span className="fs-3" data-testid={`quantity-in-cart-${id}`}>
+                    {quantity}
+                  </span>{" "}
+                  in cart
                 </div>
 
-                <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                <Button
+                  onClick={() => increaseCartQuantity(id)}
+                  data-testid={`increase-cart-quantity-${id}`}
+                >
+                  +
+                </Button>
               </div>
 
               <div
@@ -66,6 +83,7 @@ const StoreItem: React.FC<StoreItemProps> = ({ id, name, price, imgUrl }) => {
                   variant="danger"
                   size="sm"
                   onClick={() => removeFromCart(id)}
+                  data-testid={`remove-from-cart-${id}`}
                 >
                   Remove
                 </Button>
