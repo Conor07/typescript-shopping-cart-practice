@@ -11,7 +11,12 @@ type ShoppingCartProps = {
 const ShoppingCart: React.FC<ShoppingCartProps> = ({ isOpen }) => {
   const { closeCart, cartItems } = useShoppingCart();
   return (
-    <Offcanvas show={isOpen} placement="end" onHide={closeCart}>
+    <Offcanvas
+      show={isOpen}
+      placement="end"
+      onHide={closeCart}
+      data-testid="shopping-cart"
+    >
       <Offcanvas.Header closeButton>
         <Offcanvas.Title> Cart</Offcanvas.Title>
       </Offcanvas.Header>
@@ -19,12 +24,12 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ isOpen }) => {
       <Offcanvas.Body>
         <Stack gap={3}>
           {cartItems.length === 0 ? (
-            <div>Your cart is empty</div>
+            <div data-testid="cart-is-empty-message">Your cart is empty</div>
           ) : (
             cartItems.map((item) => <CartItem key={item.id} {...item} />)
           )}
 
-          <div className="ms-auto fw-bold fs-5">
+          <div className="ms-auto fw-bold fs-5" data-testid="cart-total-price">
             Total{" "}
             {cartItems
               .reduce((total, cartItem) => {

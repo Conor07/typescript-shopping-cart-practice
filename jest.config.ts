@@ -3,6 +3,7 @@ import type { Config } from "@jest/types";
 const config: Config.InitialOptions = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   moduleNameMapper: {
     // Handle CSS imports (wxith CSS modules)
     "\\.(css|less|sass|scss)$": "identity-obj-proxy",

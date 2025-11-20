@@ -25,12 +25,15 @@ const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
 
       <div className="me-auto">
         <div>
-          {item.name}{" "}
-          {quantity > 1 && (
-            <span className="text-muted" style={{ fontSize: "0.65rem" }}>
-              x{quantity}
-            </span>
-          )}
+          <span data-testid={`cart-item-name-${id}`}>{item.name}</span>
+
+          <span
+            className="text-muted"
+            style={{ fontSize: "0.65rem" }}
+            data-testid={`cart-item-quantity-${id}`}
+          >
+            x{quantity}
+          </span>
         </div>
 
         <div className="text-muted" style={{ fontSize: "0.65rem" }}>
@@ -43,6 +46,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
           variant="outline-danger"
           size="sm"
           onClick={() => removeFromCart(id)}
+          data-testid={`cart-item-remove-from-cart-${id}`}
         >
           &times;
         </Button>

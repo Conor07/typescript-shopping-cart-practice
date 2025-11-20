@@ -2,7 +2,6 @@ import "@testing-library/jest-dom";
 import { act, render, screen } from "@testing-library/react";
 import { ShoppingCartProvider } from "../../context/ShoppingCartContext";
 import Store from "../Store";
-
 import storeItems from "../../data/items.json";
 import { formatCurrency } from "../../utilities/formatCurrency";
 
